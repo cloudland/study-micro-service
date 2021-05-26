@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: dubbo-provider-server
+  main:
+    allow-bean-definition-overriding: true
+#  cloud:
+#    nacos:
+#      config:
+#        server-addr: 172.18.7.91:8848
+#      discovery:
+#        enabled: true
+#        register-enabled: true
+#        server-addr: 172.18.7.91:8848
+        # 配置采用的域
+        #namespace:
+#        group: STUDY_DUBBO
+
+
+
+#dubbo:
+#  application:
+#    name: dubbo-provider
+#    qos:
+#      enable: false
+#  scan:
+#    base-packages: org.cloudland.study.dubbo.provider
+#  protocol:
+#    dubbo:
+#      name: dubbo
+#      port: -1
+#  registry:
+#    address: nacos://172.18.7.91:8848
+#    use-as-config-center: false
+#  monitor:
+#    protocol: register
+
+  ##如果要使用自己创建的命名空间可以使用下面2种方式
+    #address = nacos://10.20.153.10:8848?namespace=5cbb70a5-xxx-xxx-xxx-d43479ae0932
+    #parameters.namespace=5cbb70a5-xxx-xxx-xxx-d43479ae0932
