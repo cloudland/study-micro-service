@@ -1,0 +1,51 @@
+# ====== 日志配置 ======
+logging:
+  level:
+    root: INFO
+    # SQLMapper日志级别
+#    org.cloudland.customer.datasource.db: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    # 指定包日志级别
+    com.netflix: INFO
+    # 当前服务日志级别
+    org.cloudland.study.jpa: DEBUG
+
+# ====== 数据库配置 ======
+spring:
+  datasource:
+    name: test
+    #    url: jdbc:mysql://192.168.100.99:3306/junit_jk
+    url: jdbc:postgresql://172.18.8.33:5432/dispatcher?useUnicode=true&characterEncoding=utf8&currentSchema=public
+    username: emergencydev
+    password: emergencydev
+    # 使用druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: org.postgresql.Driver
+    filters: stat
+    connectionProperties: druid.stat.mergeSql=false;druid.stat.slowSqlMillis=5000
+    maxActive: 10
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 2
+
+
+  jpa:
+    database: postgresql
+    #在建表的时候，将默认的存储引擎切换为 InnoDB
+#    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    # 配置在日志中打印出执行的 SQL 语句信息。
+    show-sql: true
+    # 配置指明在程序启动的时候要删除并且创建实体类对应的表。
+    hibernate:
+      ddl-auto: none #create #update
+
+
