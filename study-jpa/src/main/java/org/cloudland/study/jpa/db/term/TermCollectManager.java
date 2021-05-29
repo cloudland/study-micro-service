@@ -23,7 +23,7 @@ public class TermCollectManager implements TermCollect {
     /**
      * 需排序字段集合
      */
-    private Map<String, Sort> fieldSortMapping = new HashMap<>(6);
+    private Map<String, Sort.Order> fieldSortMapping = new HashMap<>(6);
 
     private Integer pageNo = 1;
 
@@ -53,12 +53,7 @@ public class TermCollectManager implements TermCollect {
 
     @Override
     public FieldSort orderBy(String field) {
-        Sort fieldSort = fieldSortMapping.get(field);
-        if (null == fieldSort) {
-            fieldSort = Sort.by(field);
-        }
-
-        return new InnerFieldSort(this, fieldSort);
+        return new InnerFieldSort(this, field);
     }
 
     @Override
@@ -78,7 +73,7 @@ public class TermCollectManager implements TermCollect {
 
             @Override
             public Pageable pageable() {
-                Sort sort = fieldSortMapping.values().stream().reduce((_curent, _next) -> _curent.and(_next)).orElse(null);
+                Sort sort = Sort.by(fieldSortMapping.values().stream().toArray(Sort.Order[]::new));
                 return null == sort ? PageRequest.of(0 < pageNo ? pageNo - 1 : 0, pageSize) : PageRequest.of(0 < pageNo ? pageNo - 1 : 0, pageSize, sort);
             }
         };
@@ -304,24 +299,33 @@ public class TermCollectManager implements TermCollect {
 
         private TermCollect collect;
 
-        private Sort fieldSort;
+        private String field;
 
-        public InnerFieldSort(TermCollect collect, Sort fieldSort) {
+        public InnerFieldSort(TermCollect collect, String field) {
             this.collect = collect;
-            this.fieldSort = fieldSort;
+            this.field = field;
         }
 
         @Override
         public TermCollect ASC() {
-            fieldSort.ascending();
+            ((TermCollectManager) this.collect).writeback(Sort.Order.asc(field));
             return this.collect;
         }
 
         @Override
         public TermCollect DESC() {
-            fieldSort.descending();
+            ((TermCollectManager) this.collect).writeback(Sort.Order.desc(field));
             return this.collect;
         }
+    }
+
+    /**
+     * 回写字段排序
+     *
+     * @param fieldOrder
+     */
+    public void writeback(Sort.Order fieldOrder) {
+        fieldSortMapping.put(fieldOrder.getProperty(), fieldOrder);
     }
 
     /**

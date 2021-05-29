@@ -50,7 +50,7 @@ class AStoreTest extends JUnitParentTest {
 
     @Test
     void testFindPage() {
-        PageResult<AModel> resultPage = store.findPage("11", 1, 9);
+        PageResult<AModel> resultPage = store.findPage("9", 1, 9);
 
         resultPage.list().stream().forEach(model -> {
             getLogger().info("标识: {}, 文本: {}, 数值: {}, 浮点: {}, 创建: {}, 更新: {}, 失效: {}, 版本: {}", model.getId(), model.getText(), model.getNumber(), model.getDecimal(), model.getCreatedTime(), model.getUpdatedTime(), model.getLoseTime(), model.getVersion());

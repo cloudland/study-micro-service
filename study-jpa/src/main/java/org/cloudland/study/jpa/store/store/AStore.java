@@ -65,7 +65,9 @@ public class AStore extends AbstractParentStore<AEntity, AModel> {
      */
     public PageResult<AModel> findPage(String number, Integer beginRow, Integer endRow) {
         TermCollect term = buildTerm();
-        term.field(ATerm.NUMBER).equal(number);
+        term.field(ATerm.NUMBER).greaterThan(number);
+        term.orderBy(ATerm.NUMBER).DESC();
+
         term.limit(beginRow, endRow);
 
         return findPageByTerm(term);
