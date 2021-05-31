@@ -1,0 +1,17 @@
+server:
+  port: 8096
+
+  # dubbo config
+dubbo:
+  application:
+    name: seata-rm-d-server
+    qos-enable: false
+  registry:
+    address: nacos://172.18.7.148:8848
+    use-as-metadata-center: false
+    use-as-config-center: false
+  scan:
+    base-packages: org.cloudland.study.seata.d.master
+  protocol:
+    name: dubbo
+    port: -1

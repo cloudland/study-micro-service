@@ -1,0 +1,33 @@
+server:
+  port: 8099
+
+seata:
+  enabled: true
+  application-id: seata-tm-server
+  tx-service-group: my_test_tx_group
+  registry:
+    type: nacos
+    nacos:
+      application: seata-server
+      server-addr: 172.18.7.148:8848
+      group: SEATA_GROUP
+
+# dubbo config
+dubbo:
+  application:
+    name: seata-tm-server
+    qos-enable: false
+  registry:
+    protocol: nacos
+    address: 172.18.7.148:8848
+    use-as-metadata-center: false
+    use-as-config-center: false
+    check: false
+#    parameters:
+#      serverAddr: seata-server
+  scan:
+    base-packages: org.cloudland.study.seata.d.master
+  protocol:
+    name: dubbo
+  consumer:
+    check: false

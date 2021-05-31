@@ -1,0 +1,72 @@
+<assembly>
+    <!-- 标识符，添加到生成文件名称的后缀符 RELEASE -->
+    <id>STUDY</id>
+
+    <!-- zip、tar、tar.gz、tar.bz2、jar、war -->
+    <formats>
+        <format>jar</format>
+        <format>war</format>
+    </formats>
+
+    <!-- true: 放在包内的打包目录下, false: 直接放在包根目录下 -->
+    <includeBaseDirectory>true</includeBaseDirectory>
+
+    <!-- 指定将工程依赖的包打到包里的指定目录下 -->
+    <dependencySets>
+        <dependencySet>
+            <!-- false: 将依赖以原来的JAR形式打包, true: 将依赖解成*.class文件的目录结构打包 -->
+            <unpack>false</unpack>
+            <!-- 指定打包时是否包含工程自身生成的jar包 -->
+            <useProjectArtifact>true</useProjectArtifact>
+            <!-- 指定将这些依赖包打到包里lib目录下 -->
+            <outputDirectory>lib</outputDirectory>
+            <!-- 用于管理依赖的部署，runtime表示只在运行时使用 -->
+            <scope>runtime</scope>
+        </dependencySet>
+    </dependencySets>
+
+    <!-- 设置一组文件在打包时的属性 -->
+    <fileSets>
+        <fileSet>
+            <!-- 源目录的路径 -->
+            <directory>src/main/bin</directory>
+            <!-- 生成目录的路径 -->
+            <outputDirectory>bin</outputDirectory>
+            <!-- 设定包含或排除哪些文件，支持通配符 -->
+            <includes>
+                <include>*.sh</include>
+            </includes>
+            <!-- 指定该目录下的文件属性, 默认: 0644 -->
+            <fileMode>0755</fileMode>
+        </fileSet>
+        <fileSet>
+            <directory>src/main/conf</directory>
+            <outputDirectory>conf</outputDirectory>
+        </fileSet>
+        <fileSet>
+            <directory>src/main/sql</directory>
+            <includes>
+                <include>*.sql</include>
+            </includes>
+            <outputDirectory>sql</outputDirectory>
+        </fileSet>
+        <fileSet>
+            <directory>target/classes/</directory>
+            <includes>
+                <include>*.properties</include>
+                <include>*.xml</include>
+                <include>*.txt</include>
+            </includes>
+            <outputDirectory>conf</outputDirectory>
+        </fileSet>
+    </fileSets>
+
+    <files>
+        <file>
+            <source>target/${project.artifactId}-${project.version}.jar</source>
+            <outputDirectory>.</outputDirectory>
+        </file>
+    </files>
+
+
+</assembly>

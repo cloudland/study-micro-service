@@ -1,3 +1,4 @@
+# 只有在配置了Spring-Cloud的项目才会使用此配置文件, 且文件配置优先级高于application且不会被覆盖
 spring:
   application:
     name: dubbo-provider-server
