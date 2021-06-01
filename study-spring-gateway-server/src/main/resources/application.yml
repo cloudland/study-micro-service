@@ -1,0 +1,73 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: study-gateway-server
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 172.18.7.148:8848
+        group: STUDY_GATEWAY
+
+#    gateway:
+#      discovery:
+#        # 开通注册中心动态路由功能, 利用微服务名进行路由
+#        locator:
+#          enabled: true
+#      # 网关统一配置跨域请求
+#      globalcors:
+#        cors-configurations:
+#          '[/**]':
+#            allowed-origins: "*"
+#            allowed-headers: "*"
+#            allow-credentials: true
+#            allowed-methods:
+#              - GET
+#              - POST
+#              - DELETE
+#              - PUT
+#              - OPTION
+#      routes:
+#        # 一个Route模块由一个 ID，一个目标 URI，一组断言和一组过滤器定义
+#        - id: url-proxy-1
+#          # 目标服务地址(转发地址)
+##          uri: http://localhost:9023
+##          uri: lb://study-gateway # 注册中心的微服务名称
+#          uri: http://baidu.com
+#          # 转发匹配规则(断言)
+#          predicates:
+#            # 当请求的路径为gate、rule开头的时，转发到http://localhost:9023服务器上
+#            - Path=/gate/**,/rule/**
+#          # 过滤器
+#          filters:
+#            # 在请求路径前加上 before
+#            - PrefixPath=/before
+#            # 熔断
+##            - name: Hystrix
+##                args:
+##                  name: fallbackCmdA
+##                  # 自定 Contorl 处理类
+##                  fallbackUri: forward:/fallbackA
+#            # 令牌桶(限流)
+##            - name: RequestRateLimiter
+##                args:
+##                  key-resolver: '#{@userKeyResolver}'
+##                  redis-rate-limiter.replenishRate: 1
+##                  redis-rate-limiter.burstCapacity: 3
+
+#hystrix.command.fallbackCmdA.execution.isolation.thread.timeoutInMilliseconds: 5000
+
+# ====== 监控信息 ======
+management:
+  # 管理端口 8060
+  port: 8060
+  # Actuator 访问路径
+  context-path: /monitor
+  # 关闭用户验证
+  security:
+    enabled: false
+info:
+  app:
+    name: study-gateway-server
+    version: 1.0.0
