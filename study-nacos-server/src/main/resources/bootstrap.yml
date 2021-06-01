@@ -1,0 +1,26 @@
+spring:
+  cloud:
+    nacos:
+      # nacos 配置要更早优于 application 加载, 所以放在 bootstrap 配置中
+      config:
+        # 服務地址
+        server-addr: 172.18.7.91:8848
+        # 配置命名空间，根据命名空间ID，加载不同namespace的配置
+#        namespace: mall
+        # 配置文件的格式
+#        file-extension: yaml
+        # 配置文件的分組
+#        group:
+        # 优先级 extension-configs > shared-configs 配置
+        # 加载多配置文件,下标越大，优先级越高
+#        extension-configs:
+#          - dataId:
+#            group:
+#            #是否刷新
+#            refresh: true
+        # 加载多共享配置文件,下标越大，优先级越高
+#        shared-configs:
+#          - dataId:
+#            group:
+#            #是否刷新
+#            refresh: true

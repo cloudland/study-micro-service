@@ -4,11 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.cloudland.study</groupId>
-    <artifactId>seata-tm-server</artifactId>
+    <groupId>org.cloudland.study.dubbo</groupId>
+    <artifactId>study-nacos-server</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
-    <name>seata-tm-server</name>
+    <name>study-nacos-server</name>
     <url>http://www.example.com</url>
 
     <dependencyManagement>
@@ -70,24 +70,23 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>com.alibaba.cloud</groupId>-->
+<!--            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>-->
+<!--        </dependency>-->
+
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba.boot</groupId>
+            <artifactId>nacos-config-spring-boot-starter</artifactId>
+            <version>0.2.7</version>
+        </dependency>
         <!-- Spring Boot Starter End -->
-
-        <!-- Apache Dubbo Begin -->
-        <dependency>
-            <groupId>org.apache.dubbo</groupId>
-            <artifactId>dubbo</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.dubbo</groupId>
-            <artifactId>dubbo-registry-nacos</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.dubbo</groupId>
-            <artifactId>dubbo-spring-boot-starter</artifactId>
-        </dependency>
-        <!-- Apache Dubbo End -->
 
         <!-- Apache Commons Begin -->
         <dependency>
@@ -96,39 +95,23 @@
         </dependency>
         <!-- Apache Commons End -->
 
+        <!-- Dom4j Jar Begin -->
         <dependency>
-           <groupId>io.seata</groupId>
-           <artifactId>seata-spring-boot-starter</artifactId>
+            <groupId>dom4j</groupId>
+            <artifactId>dom4j</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>org.cloudland.study</groupId>
-            <artifactId>seata-rm-a-master</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.cloudland.study</groupId>
-            <artifactId>seata-rm-b-master</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.cloudland.study</groupId>
-            <artifactId>seata-rm-d-master</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
-        </dependency>
+        <!-- Dom4j Jar End -->
 
     </dependencies>
 
     <build>
-        <finalName>seata-tm-server</finalName>
+        <finalName>study-nacos-server</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>org.cloudland.seata.tm.SeataTMServerApplication</mainClass>
+                    <mainClass>org.cloudland.study.nacos.StudyNacosServerApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>
@@ -149,6 +132,5 @@
             </plugin>
         </plugins>
     </build>
-
 
 </project>
