@@ -4,7 +4,8 @@ server:
 seata:
   enabled: true
   application-id: seata-tm-server
-  tx-service-group: my_test_tx_group
+  # 需要与 conf 目录下 file.conf 文件下名称一致, 名字可自定义
+   tx-service-group: tm_test_tx_group
   registry:
     type: nacos
     nacos:
@@ -23,8 +24,8 @@ dubbo:
     use-as-metadata-center: false
     use-as-config-center: false
     check: false
-#    parameters:
-#      serverAddr: seata-server
+    parameters:
+      serverAddr: seata-server
   scan:
     base-packages: org.cloudland.study.seata.d.master
   protocol:
