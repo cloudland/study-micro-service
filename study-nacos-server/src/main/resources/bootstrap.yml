@@ -1,10 +1,13 @@
 spring:
-  cloud:
-    nacos:
+  application:
+    name: study-nacos-server
+
+#  cloud:
+#    nacos:
       # nacos 配置要更早优于 application 加载, 所以放在 bootstrap 配置中
-      config:
+#      config:
         # 服務地址
-        server-addr: 172.18.7.91:8848
+#        server-addr: 172.18.7.148:8848
         # 配置命名空间，根据命名空间ID，加载不同namespace的配置
 #        namespace: mall
         # 配置文件的格式
@@ -24,3 +27,7 @@ spring:
 #            group:
 #            #是否刷新
 #            refresh: true
+
+nacos:
+  config:
+    server-addr: 172.18.7.148:8848

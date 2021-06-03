@@ -1,0 +1,34 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: study-sentienl-server
+  cloud:
+    sentinel:
+      transport:
+        # 设置 sentienl dashboard 地址
+        dashboard: 127.0.0.1:8080
+        # 默认: 8791
+        port: 8791
+      datasource:
+        db:
+          nacos:
+            server-addr: 172.18.7.148:8848
+            groupId: SENTIENL-GROUP
+            dataId: study-sentienl-server
+            data-type: json
+            rule-type: flow
+
+# nacos 配置内容, 避免 sentinel 重启规则消失
+#[
+#  {
+#    "resource": "/hello",
+#    "limitApp": "default",
+#    "grade": 1,
+#    "count": 1,
+#    "strategy": 0,
+#    "controlBehavior": 0,
+#    "clusterMode": false
+#  }
+#]
